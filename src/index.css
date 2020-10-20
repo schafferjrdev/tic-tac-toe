@@ -1,14 +1,221 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: Chalk;
+  src: url(./assets/fonts/PWChalk.ttf);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+body {
+  font: 14px Chalk;
+  margin: 20px;
+  background-color: #4f584d;
+}
+*:focus {
+  outline: none !important;
+}
+
+ol,
+ul {
+  padding-left: 30px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+.label-ia {
+  color: #ccc;
+  font-size: 15pt;
+}
+
+.square {
+  background: transparent;
+  border: 2px dashed rgba(255, 255, 255, 0.8);
+  float: left;
+  font-size: 10vh;
+  font-weight: 400;
+  line-height: 20vh;
+  height: 20vh;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 20vh;
+  /* color: #888; */
+  font-family: Chalk;
+  transition: all 0.2s ease-in;
+}
+
+.square svg {
+  opacity: 0.4;
+}
+
+.square:focus {
+  outline: none;
+}
+
+.centered {
+  text-align: center;
+  margin: 1em 0;
+}
+
+.font-3 {
+  color: #eee;
+  font-size: 2em;
+}
+
+.kbd-navigation .square:focus {
+  background: #ddd;
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.game-info {
+  margin-left: 20px;
+}
+
+.win svg {
+  opacity: 1;
+}
+
+.restart-button {
+  cursor: pointer;
+  color: #ccc;
+}
+
+.restart-button:hover,
+.restart-button:active {
+  transform: rotate(-5deg) scale(1.1);
+  color: #fff;
+  transition: all 0.2s ease-in;
+}
+
+.square:hover,
+.square:active {
+  transform: scale(0.99);
+}
+
+.strikethrough {
+  width: 0;
+  transform: translateY(10vh);
+  position: absolute;
+  height: 10px;
+  background-color: rgba(238, 238, 238, 1);
+  animation: drawLine ease-in 0.5s 1 forwards;
+  animation-delay: 1s;
+}
+.h-mid {
+  transform: translateY(30vh);
+}
+.h-bot {
+  transform: translateY(50vh);
+}
+.v-left {
+  transform: rotate(90deg) translateY(-10vh);
+  transform-origin: left;
+}
+.v-mid {
+  transform: rotate(90deg) translateY(-30vh);
+  transform-origin: left;
+}
+.v-right {
+  transform: rotate(90deg) translateY(-50vh);
+  transform-origin: left;
+}
+.d-down {
+  transform: rotate(45deg);
+  transform-origin: left;
+  animation: diagonalLine ease-in 0.5s 1 forwards;
+  animation-delay: 1s;
+}
+.d-up {
+  margin-top: 60vh;
+  transform: rotate(-45deg);
+  transform-origin: left;
+  animation: diagonalLine ease-in 0.5s 1 forwards;
+  animation-delay: 1s;
+}
+
+@keyframes diagonalLine {
+  to {
+    width: calc(60vh * 1.414);
+  }
+}
+
+@keyframes drawLine {
+  to {
+    width: 60vh;
+  }
+}
+
+@media (max-width: 450px) {
+  .square {
+    font-size: 40pt;
+
+    line-height: 80px;
+    height: 80px;
+    width: 80px;
+  }
+  .font-3 {
+    font-size: 1em;
+  }
+
+  .strikethrough {
+    width: 0;
+    transform: translateY(40px);
+    position: absolute;
+    height: 6px;
+    animation: drawLine ease-in 0.5s 1 forwards;
+    animation-delay: 1s;
+  }
+  .h-mid {
+    transform: translateY(125px);
+  }
+  .h-bot {
+    transform: translateY(210px);
+  }
+  .v-left {
+    transform: rotate(90deg) translateY(-40px);
+    transform-origin: left;
+  }
+  .v-mid {
+    transform: rotate(90deg) translateY(-125px);
+    transform-origin: left;
+  }
+  .v-right {
+    transform: rotate(90deg) translateY(-210px);
+    transform-origin: left;
+  }
+  .d-down {
+    transform: rotate(45deg);
+    transform-origin: left;
+    animation: diagonalLine ease-in 0.5s 1 forwards;
+    animation-delay: 1s;
+  }
+  .d-up {
+    margin-top: 250px;
+    transform: rotate(-45deg);
+    transform-origin: left;
+    animation: diagonalLine ease-in 0.5s 1 forwards;
+    animation-delay: 1s;
+  }
+
+  @keyframes diagonalLine {
+    to {
+      width: calc(250px * 1.414);
+    }
+  }
+
+  @keyframes drawLine {
+    to {
+      width: 250px;
+    }
+  }
 }
